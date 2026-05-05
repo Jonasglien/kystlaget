@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html class="light" lang="no"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800;900&amp;family=Lexend:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#006827",
+                    "on-surface": "#151c22",
+                    "on-primary-fixed": "#001849",
+                    "on-secondary-container": "#6e5c00",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#544600",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#f6faff",
+                    "on-primary-container": "#f8f7ff",
+                    "inverse-primary": "#b3c5ff",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#ffe16d",
+                    "on-surface-variant": "#424656",
+                    "outline-variant": "#c2c6d8",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#e8eff7",
+                    "secondary-fixed-dim": "#e9c400",
+                    "surface": "#f6faff",
+                    "primary-fixed": "#dae1ff",
+                    "on-tertiary-container": "#e6ffe2",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#00531e",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#0054d6",
+                    "on-tertiary-fixed": "#002108",
+                    "tertiary-container": "#008434",
+                    "secondary": "#705d00",
+                    "surface-container-low": "#edf4fc",
+                    "surface-variant": "#dce3eb",
+                    "surface-dim": "#d4dbe3",
+                    "surface-container-high": "#e2e9f1",
+                    "secondary-container": "#fcd400",
+                    "on-secondary-fixed": "#221b00",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "inverse-surface": "#2a3137",
+                    "primary-container": "#0066ff",
+                    "inverse-on-surface": "#eaf1f9",
+                    "tertiary-fixed-dim": "#3ce36a",
+                    "tertiary-fixed": "#69ff87",
+                    "on-background": "#151c22",
+                    "on-primary": "#ffffff",
+                    "primary": "#0050cb",
+                    "background": "#f6faff",
+                    "surface-container-highest": "#dce3eb",
+                    "outline": "#727687"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "touch-target-min": "56px",
+                    "margin": "24px",
+                    "unit": "8px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Lexend"],
+                    "button-text": ["Plus Jakarta Sans"],
+                    "body-lg": ["Lexend"],
+                    "label-lg": ["Lexend"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "800"}],
+                    "body-md": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "button-text": ["22px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "body-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "label-lg": ["16px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .maritime-waves {
+            background-image: radial-gradient(circle at 20px 20px, rgba(255,255,255,0.1) 2%, transparent 0%);
+            background-size: 40px 40px;
+        }
+        .squishy-button {
+            transition: all 0.1s ease;
+            box-shadow: 0 8px 0 0 rgba(0, 0, 0, 0.2);
+        }
+        .squishy-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.2);
+        }
+        .ship-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen overflow-x-hidden flex flex-col">
+<!-- TopAppBar Component -->
+<header class="bg-blue-600 dark:bg-blue-900 text-white dark:text-blue-50 font-['Plus_Jakarta_Sans'] font-black tracking-tight uppercase docked full-width top-0 rounded-b-[32px] border-b-8 border-blue-800 shadow-lg flex justify-between items-center w-full px-6 py-4 max-w-full z-40 sticky">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-white" data-icon="anchor">anchor</span>
+<h1 class="text-xl font-black text-white italic drop-shadow-sm">Fosenkaia-quiz</h1>
+</div>
+<button class="hover:brightness-110 active:translate-y-1 active:border-b-4 transition-all duration-100 p-2">
+<span class="material-symbols-outlined text-white" data-icon="settings">settings</span>
+</button>
+</header>
+<!-- Main Canvas Content -->
+<main class="flex-grow relative flex flex-col items-center justify-start px-margin py-unit mt-4">
+<!-- Hero Illustration Area -->
+<div class="w-full max-w-md aspect-[1.37] relative rounded-lg overflow-hidden border-4 border-blue-200 shadow-xl mb-gutter ship-float">
+<img alt="Maritime illustration of Fosenkaia" class="w-full h-full object-cover" data-alt="A vibrant, child-friendly digital illustration of a historic Norwegian harbor scene at Fosenkaia. Several traditional wooden sailing boats and vintage fishing vessels are docked alongside a weathered wooden pier. The art style is bold and energetic with thick outlines and a high-contrast maritime color palette of deep blues, bright whites, and warm wood tones. The atmosphere is sunny and adventurous, reflecting a playful learning environment for children." src="https://lh3.googleusercontent.com/aida/ADBb0ujhc8K0yqAAdpyspJhwIiU7y6tcASgNPckaHa_zKYmZmGS2fWUHiZAaeAOJ7ilAI8XiBqHmM6cV-qIWRPy3SAHXEmh_5ZG9MLKbXbl_TY5n1sW4B6KLVz5GiOfhU9GFr-IuOInVHOwh5-V16omk2K2GLDz8vU5VXDF0zVcabZxPEh_YXCpqSAluO0XYQxSWiLqCmGpNXTn6mglzLjknYD_DKSkrYQgCJ2VuDzCZdGzWvamxpKg1f1q3BPeaLmw_GhcAKUtzRj_v"/>
+</div>
+<!-- Intro Text Section -->
+<div class="w-full max-w-md bg-white rounded-lg p-6 border-4 border-slate-100 shadow-md relative overflow-hidden mb-gutter">
+<div class="absolute -top-4 -right-4 text-blue-100 opacity-50">
+<span class="material-symbols-outlined text-[120px]" data-icon="waves" style="font-variation-settings: 'FILL' 1;">waves</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary mb-4 relative z-10">Bli med på eventyret!</h2>
+<div class="space-y-4 relative z-10">
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+                    På Fosenkaia ligger det mer enn 20 verneverdige båter og tradisjonsbåter. Noen er over 100 år gamle!
+                </p>
+<p class="font-body-md text-body-md text-on-surface-variant italic">
+                    Klarer du å finne ut hvilken båt som er eldst, eller hva de forskjellige delene av en båt kalles?
+                </p>
+</div>
+</div>
+<!-- Start Button Section -->
+<div class="w-full max-w-md mb-32">
+<button class="w-full group relative bg-primary text-white font-button-text text-headline-sm py-8 rounded-lg squishy-button flex flex-col items-center justify-center gap-2 border-b-[8px] border-blue-800 transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[40px]" data-icon="play_circle" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span>START SPILL</span>
+</div>
+<span class="text-sm font-medium tracking-widest opacity-80 uppercase">Sett seil nå!</span>
+</button>
+<!-- Quick Stats/Info Row -->
+<div class="grid grid-cols-3 gap-gutter mt-gutter">
+<div class="bg-blue-50 p-4 rounded-lg flex flex-col items-center border-2 border-blue-100">
+<span class="material-symbols-outlined text-blue-600 mb-1" data-icon="quiz">quiz</span>
+<span class="font-bold text-sm">12 Oppgaver</span>
+</div>
+<div class="bg-blue-50 p-4 rounded-lg flex flex-col items-center border-2 border-blue-100">
+<span class="material-symbols-outlined text-blue-600 mb-1" data-icon="timer">timer</span>
+<span class="font-bold text-sm">10 Min</span>
+</div>
+<div class="bg-blue-50 p-4 rounded-lg flex flex-col items-center border-2 border-blue-100">
+<span class="material-symbols-outlined text-blue-600 mb-1" data-icon="military_tech" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<span class="font-bold text-sm">3 Trofeer</span>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar Component -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-end px-4 pb-8 pt-4 bg-white dark:bg-slate-900 rounded-t-[40px] border-t-4 border-slate-100 shadow-[0_-10px_25px_-5px_rgba(0,0,0,0.1)]">
+<!-- Hjem (Active) -->
+<a class="flex flex-col items-center justify-center bg-blue-500 text-white rounded-3xl px-5 py-2 shadow-[0_4px_0_0_rgba(29,78,216,1)] -translate-y-2 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Plus_Jakarta_Sans'] font-bold text-[12px]">Hjem</span>
+</a>
+<!-- Oppdrag -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2 hover:text-blue-500 dark:hover:text-blue-300 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="directions_boat">directions_boat</span>
+<span class="font-['Plus_Jakarta_Sans'] font-bold text-[12px]">Oppdrag</span>
+</a>
+<!-- Trofeer -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2 hover:text-blue-500 dark:hover:text-blue-300 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="military_tech">military_tech</span>
+<span class="font-['Plus_Jakarta_Sans'] font-bold text-[12px]">Trofeer</span>
+</a>
+</nav>
+<!-- Floating Background Elements (Decorative) -->
+<div class="fixed bottom-32 -left-10 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[200px]" data-icon="sailing">sailing</span>
+</div>
+<div class="fixed top-40 -right-10 opacity-10 pointer-events-none rotate-12">
+<span class="material-symbols-outlined text-[150px]" data-icon="anchor">anchor</span>
+</div>
+</body></html>
