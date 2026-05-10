@@ -199,7 +199,7 @@ tailwind.config = {
 
     <!-- Logo -->
     <div class="w-full max-w-md flex justify-center mb-3 ship-float">
-      <img src="kystlaget.png" alt="Kystlaget Trondhjem" class="w-28 h-28 object-contain drop-shadow-xl"/>
+      <img src="kystlaget2.png" alt="Kystlaget Trondhjem" class="w-4/5 aspect-square object-contain drop-shadow-xl"/>
     </div>
 
     <!-- Intro card -->
@@ -207,7 +207,7 @@ tailwind.config = {
       <div class="absolute -top-3 -right-3 text-blue-100 opacity-40 pointer-events-none">
         <span class="material-symbols-outlined text-[72px]" style="font-variation-settings:'FILL' 1;">waves</span>
       </div>
-      <h2 class="font-['Plus_Jakarta_Sans'] text-base font-bold text-[#0050cb] mb-2 relative z-10">Bli med på eventyret!</h2>
+      <h2 class="font-['Plus_Jakarta_Sans'] text-base font-bold text-[#0050cb] mb-2 relative z-10">Prøv å finn alle båtene!</h2>
       <div class="space-y-2 relative z-10">
         <p class="font-['Lexend'] text-sm font-medium text-[#151c22] leading-relaxed">
           På Fosenkaia i Trondheim ligger det mer enn 20 verneverdige båter. Noen er over 100 år gamle!
@@ -225,7 +225,7 @@ tailwind.config = {
           <span class="material-symbols-outlined text-xl" style="font-variation-settings:'FILL' 1;">play_circle</span>
           <span>START SPILL</span>
         </div>
-        <span class="text-xs font-medium tracking-widest opacity-75 uppercase">Sett seil nå!</span>
+        <!--<span class="text-xs font-medium tracking-widest opacity-75 uppercase">Skip ohoy!</span>-->
       </button>
 
       <!-- Stats row -->
@@ -254,11 +254,11 @@ tailwind.config = {
     </span>
     <button onclick="startQuiz()" class="flex flex-col items-center text-slate-400 px-3 py-1.5 hover:text-blue-500 transition-colors active:scale-90">
       <span class="material-symbols-outlined text-base">directions_boat</span>
-      <span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px]">Oppdrag</span>
+      <span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px]">Spill</span>
     </button>
     <button onclick="showResults(true)" class="flex flex-col items-center text-slate-400 px-3 py-1.5 hover:text-blue-500 transition-colors active:scale-90">
       <span class="material-symbols-outlined text-base">military_tech</span>
-      <span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px]">Trofeer</span>
+      <span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px]">Resultat</span>
     </button>
   </nav>
 
@@ -320,11 +320,11 @@ tailwind.config = {
     </button>
     <span class="flex flex-col items-center bg-blue-500 text-white rounded-3xl px-3 py-1 shadow-[0_3px_0_0_rgba(29,78,216,1)] -translate-y-1">
       <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">directions_boat</span>
-      <span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px]">Oppdrag</span>
+      <span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px]">Spill</span>
     </span>
     <button onclick="showResults(true)" class="flex flex-col items-center text-slate-400 px-3 py-1.5 hover:text-blue-500 transition-colors active:scale-90">
       <span class="material-symbols-outlined text-base">military_tech</span>
-      <span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px]">Trofeer</span>
+      <span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px]">Resultat</span>
     </button>
   </nav>
 
@@ -352,7 +352,7 @@ tailwind.config = {
       </div>
 
       <!-- Trophy medal -->
-      <div class="bg-[#fcd400] w-16 h-16 rounded-full flex items-center justify-center border-2 border-white shadow-[0_4px_0_0_#6e5c00] -mt-10 z-10 relative">
+      <div id="trophy-medal" class="bg-[#fcd400] w-16 h-16 rounded-full flex items-center justify-center border-2 border-white shadow-[0_4px_0_0_#6e5c00] -mt-10 z-10 relative">
         <span class="material-symbols-outlined text-4xl text-[#6e5c00]" style="font-variation-settings:'FILL' 1;">military_tech</span>
       </div>
 
@@ -365,7 +365,7 @@ tailwind.config = {
         <div class="flex items-baseline gap-1.5">
           <span id="score-display" class="font-['Plus_Jakarta_Sans'] text-2xl font-extrabold text-[#006827]">0</span>
           <span class="font-['Lexend'] text-base font-medium text-[#727687]">av</span>
-          <span class="font-['Plus_Jakarta_Sans'] text-lg font-bold text-[#151c22]">22 poeng!</span>
+          <span class="font-['Plus_Jakarta_Sans'] text-lg font-bold text-[#151c22]">24 poeng!</span>
         </div>
         <div class="w-full mt-3 relative h-4 bg-[#e8eff7] rounded-full border border-[#c2c6d8]">
           <div id="result-bar" class="absolute left-0 top-0 h-full bg-[#0066ff] rounded-full transition-all duration-700" style="width:0%"></div>
@@ -379,14 +379,23 @@ tailwind.config = {
 
     <!-- Action buttons -->
     <div class="w-full max-w-md flex flex-col gap-2 mt-5">
-      <button onclick="startQuiz()" class="submit-btn w-full h-10 bg-[#0066ff] text-white font-['Plus_Jakarta_Sans'] font-bold text-base rounded-[0.75rem] border-b-[5px] border-[#003fa4] flex items-center justify-center gap-2">
-        <span class="material-symbols-outlined text-base">refresh</span>
-        Spill igjen
-      </button>
-      <button onclick="goHome()" class="submit-btn w-full h-10 bg-white text-[#151c22] font-['Plus_Jakarta_Sans'] font-bold text-base rounded-[0.75rem] border-2 border-b-[5px] border-[#dce3eb] flex items-center justify-center gap-2">
-        <span class="material-symbols-outlined text-base">home</span>
-        Tilbake til start
-      </button>
+      <div id="submit-name-area">
+        <button onclick="showNameInput()" class="submit-btn w-full bg-[#fcd400] text-[#221b00] font-['Plus_Jakarta_Sans'] font-bold text-base py-3 rounded-[0.75rem] border-b-[5px] border-[#6e5c00] flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">emoji_events</span>
+          Send inn ditt navn (og få premie i kantina)
+        </button>
+      </div>
+      <div id="name-input-area" class="hidden flex flex-col gap-2">
+        <input id="player-name-input" type="text" placeholder="Skriv inn ditt navn..." class="w-full h-14 px-4 text-base font-['Lexend'] font-medium text-[#151c22] bg-white border-[3px] border-[#0050cb] rounded-[0.75rem] outline-none focus:border-[#0066ff]"/>
+        <button onclick="submitName()" class="submit-btn w-full bg-[#fcd400] text-[#221b00] font-['Plus_Jakarta_Sans'] font-bold text-base py-3 rounded-[0.75rem] border-b-[5px] border-[#6e5c00] flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">send</span>
+          Send inn
+        </button>
+      </div>
+      <div id="name-submitted-area" class="hidden bg-[#c8ffd4] border-2 border-[#006827] rounded-[0.75rem] px-4 py-3 text-center">
+        <p class="font-['Plus_Jakarta_Sans'] font-bold text-[#006827] text-base">Takk, <span id="submitted-name"></span>!</p>
+        <p class="font-['Lexend'] text-xs text-[#424656] mt-1">Vi har registrert deg. Hent premien din i kantina!</p>
+      </div>
     </div>
 
   </main>
@@ -398,11 +407,11 @@ tailwind.config = {
     </button>
     <button onclick="resumeQuiz()" class="flex flex-col items-center text-slate-400 px-3 py-1.5 hover:text-blue-500 transition-colors active:scale-90">
       <span class="material-symbols-outlined text-base">directions_boat</span>
-      <span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px]">Oppdrag</span>
+      <span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px]">Spill</span>
     </button>
     <span class="flex flex-col items-center bg-blue-500 text-white rounded-3xl px-3 py-1 shadow-[0_3px_0_0_rgba(29,78,216,1)] -translate-y-1">
       <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">military_tech</span>
-      <span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px]">Trofeer</span>
+      <span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px]">Resultat</span>
     </span>
   </nav>
 
@@ -410,6 +419,12 @@ tailwind.config = {
 
 
 <script>
+  // ── Scoreboard ────────────────────────────────────────────────────────────
+  const SCOREBOARD_OWNER = 'Jonasglien';
+  const SCOREBOARD_REPO  = 'kystlaget-poengtavle';
+  const SCOREBOARD_TOKEN = 'REPLACE_WITH_YOUR_PAT'; // fine-grained PAT, contents:write on kystlaget-poengtavle
+  // ─────────────────────────────────────────────────────────────────────────
+
   const CATEGORIES = [
     { key: "Ferge",      label: "Ferge",      icon: "water"         },
     { key: "Fiskebåt",  label: "Fiskebåt",  icon: "phishing"      },
@@ -489,7 +504,7 @@ tailwind.config = {
     document.getElementById('progress-boat').style.left = `calc(${pct}% - 8px)`;
     document.getElementById('boat-counter').textContent = `Båt ${currentBoatIndex + 1} av ${BOATS.length}`;
     document.getElementById('current-boat-name').textContent = boat.name;
-    document.getElementById('question-text').textContent = `Hvilken båttype er ${boat.name}?`;
+    document.getElementById('question-text').innerHTML = `Hvilken båttype er<br><span style="font-size:1.25em;color:#0050cb">${boat.name}</span>?`;
     document.getElementById('quiz-score-badge').textContent = score + ' p';
 
     const feedbackEl = document.getElementById('feedback-msg');
@@ -578,19 +593,83 @@ tailwind.config = {
     showScreen('screen-results');
     const pct = score / MAX_SCORE;
     let heading;
-    if (fromNav)          heading = 'Ditt resultat';
+    if (fromNav)          heading = 'Nåværende resultat';
     else if (pct >= 0.9)  heading = 'Mesternavigator!';
     else if (pct >= 0.7)  heading = 'Imponerende!';
     else if (pct >= 0.5)  heading = 'Bra jobba!';
     else if (pct >= 0.25) heading = 'Bra forsøk!';
-    else                  heading = 'Prøv igjen!';
+    else                  heading = 'Bedre lykke neste gang!';
     document.getElementById('result-heading').textContent = heading;
     document.getElementById('score-display').textContent = score;
+    document.getElementById('trophy-medal').classList.toggle('hidden', fromNav);
+    const playBtn = document.getElementById('play-again-btn');
+    if (fromNav) {
+      document.getElementById('play-again-icon').textContent = 'arrow_forward';
+      document.getElementById('play-again-label').textContent = 'Fortsett spillet';
+      playBtn.onclick = resumeQuiz;
+    } else {
+      document.getElementById('play-again-icon').textContent = 'refresh';
+      document.getElementById('play-again-label').textContent = 'Spill igjen';
+      playBtn.onclick = startQuiz;
+    }
+    document.getElementById('submit-name-area').classList.remove('hidden');
+    document.getElementById('name-input-area').classList.add('hidden');
+    document.getElementById('name-submitted-area').classList.add('hidden');
+    document.getElementById('player-name-input').value = '';
     requestAnimationFrame(() => requestAnimationFrame(() => {
       const barPct = (score / MAX_SCORE) * 100;
       document.getElementById('result-bar').style.width = barPct + '%';
       document.getElementById('result-boat').style.left = `calc(${barPct}% - 8px)`;
     }));
+  }
+
+  function showNameInput() {
+    document.getElementById('submit-name-area').classList.add('hidden');
+    document.getElementById('name-input-area').classList.remove('hidden');
+    document.getElementById('player-name-input').focus();
+  }
+
+  async function submitName() {
+    const name = document.getElementById('player-name-input').value.trim();
+    if (!name) return;
+
+    const btn = document.getElementById('name-input-area').querySelector('button');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="material-symbols-outlined text-base">hourglass_top</span> Sender…';
+
+    try {
+      const apiUrl = `https://api.github.com/repos/${SCOREBOARD_OWNER}/${SCOREBOARD_REPO}/contents/scores.json`;
+      const headers = {
+        Authorization: `token ${SCOREBOARD_TOKEN}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json',
+      };
+
+      const getRes = await fetch(apiUrl, { headers });
+      if (!getRes.ok) throw new Error('read');
+      const fileData = await getRes.json();
+
+      const existing = JSON.parse(decodeURIComponent(escape(atob(fileData.content.replace(/\s/g, '')))));
+      existing.unshift({ name, score, dt: new Date().toISOString() });
+
+      const putRes = await fetch(apiUrl, {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify({
+          message: `score: ${name} ${score}/24`,
+          content: btoa(unescape(encodeURIComponent(JSON.stringify(existing)))),
+          sha: fileData.sha,
+        }),
+      });
+      if (!putRes.ok) throw new Error('write');
+
+      document.getElementById('submitted-name').textContent = name;
+      document.getElementById('name-input-area').classList.add('hidden');
+      document.getElementById('name-submitted-area').classList.remove('hidden');
+    } catch {
+      btn.disabled = false;
+      btn.innerHTML = '<span class="material-symbols-outlined text-base" style="font-variation-settings:\'FILL\' 1;">warning</span> Prøv igjen';
+    }
   }
 
   function setSubmitState(state) {
