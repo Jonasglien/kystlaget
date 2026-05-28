@@ -232,7 +232,7 @@ tailwind.config = {
       <div class="grid grid-cols-3 gap-2">
         <div class="bg-blue-50 p-2 rounded-[0.75rem] flex flex-col items-center border border-blue-100">
           <span class="material-symbols-outlined text-blue-600 text-base mb-0.5">quiz</span>
-          <span class="font-['Plus_Jakarta_Sans'] font-bold text-xs text-center">18 Båter</span>
+          <span class="font-['Plus_Jakarta_Sans'] font-bold text-xs text-center">19 Båter</span>
         </div>
         <div class="bg-blue-50 p-2 rounded-[0.75rem] flex flex-col items-center border border-blue-100">
           <span class="material-symbols-outlined text-blue-600 text-base mb-0.5">category</span>
@@ -240,7 +240,7 @@ tailwind.config = {
         </div>
         <div class="bg-blue-50 p-2 rounded-[0.75rem] flex flex-col items-center border border-blue-100">
           <span class="material-symbols-outlined text-blue-600 text-base mb-0.5" style="font-variation-settings:'FILL' 1;">military_tech</span>
-          <span class="font-['Plus_Jakarta_Sans'] font-bold text-xs text-center">22 Poeng</span>
+          <span class="font-['Plus_Jakarta_Sans'] font-bold text-xs text-center">19 Poeng</span>
         </div>
       </div>
     </div>
@@ -365,7 +365,7 @@ tailwind.config = {
         <div class="flex items-baseline gap-1.5">
           <span id="score-display" class="font-['Plus_Jakarta_Sans'] text-2xl font-extrabold text-[#006827]">0</span>
           <span class="font-['Lexend'] text-base font-medium text-[#727687]">av</span>
-          <span class="font-['Plus_Jakarta_Sans'] text-lg font-bold text-[#151c22]">24 poeng!</span>
+          <span class="font-['Plus_Jakarta_Sans'] text-lg font-bold text-[#151c22]">19 poeng!</span>
         </div>
         <div class="w-full mt-3 relative h-4 bg-[#e8eff7] rounded-full border border-[#c2c6d8]">
           <div id="result-bar" class="absolute left-0 top-0 h-full bg-[#0066ff] rounded-full transition-all duration-700" style="width:0%"></div>
@@ -379,7 +379,7 @@ tailwind.config = {
 
     <!-- Action buttons -->
     <div class="w-full max-w-md flex flex-col gap-2 mt-5">
-      <div id="submit-name-area">
+      <div id="submit-name-area" class="hidden">
         <button onclick="showNameInput()" class="submit-btn w-full bg-[#fcd400] text-[#221b00] font-['Plus_Jakarta_Sans'] font-bold text-base py-3 rounded-[0.75rem] border-b-[5px] border-[#6e5c00] flex items-center justify-center gap-2">
           <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">emoji_events</span>
           Send inn ditt navn (og få premie i kantina)
@@ -396,6 +396,10 @@ tailwind.config = {
         <p class="font-['Plus_Jakarta_Sans'] font-bold text-[#006827] text-base">Takk, <span id="submitted-name"></span>!</p>
         <p class="font-['Lexend'] text-xs text-[#424656] mt-1">Vi har registrert deg. Hent premien din i kantina!</p>
       </div>
+      <button id="play-again-btn" class="submit-btn w-full bg-[#0050cb] text-white font-['Plus_Jakarta_Sans'] font-bold text-base py-3 rounded-[0.75rem] border-b-[5px] border-[#003fa4] flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-base" id="play-again-icon">refresh</span>
+        <span id="play-again-label">Prøv på nytt!</span>
+      </button>
     </div>
 
   </main>
@@ -419,43 +423,45 @@ tailwind.config = {
 
 
 <script>
-  // ── Scoreboard ────────────────────────────────────────────────────────────
-  const SCOREBOARD_OWNER = 'Jonasglien';
-  const SCOREBOARD_REPO  = 'kystlaget-poengtavle';
-  const SCOREBOARD_TOKEN = 'REPLACE_WITH_YOUR_PAT'; // fine-grained PAT, contents:write on kystlaget-poengtavle
-  // ─────────────────────────────────────────────────────────────────────────
+
+  // ── Supabase config ──────────────────────────────────────────────────────────
+  // Replace these two values after creating your Supabase project.
+  const SUPABASE_URL      = 'https://nuftltouijkxsnplmnmm.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_1NdCJ1_FEMtQBE0nX-M_7Q_W8EwNEQZ';
+  // ────────────────────────────────────────────────────────────────────────────
 
   const CATEGORIES = [
-    { key: "Ferge",      label: "Ferge",      icon: "water"         },
+    { key: "Ferge",      label: "Ferge",      icon: "directions_boat"         },
     { key: "Fiskebåt",  label: "Fiskebåt",  icon: "phishing"      },
     { key: "Seilbåt",   label: "Seilbåt",   icon: "sailing"       },
     { key: "Robåt",     label: "Robåt",     icon: "rowing"        },
-    { key: "Slepebåt",  label: "Slepebåt",  icon: "handyman"      },
-    { key: "Fraktebåt", label: "Fraktebåt", icon: "local_shipping" },
+    { key: "Arbeidsbåt",  label: "Arbeidsbåt",  icon: "handyman"      },
+    { key: "Snekke",    label: "Snekke",    icon: "wb_sunny"},
   ];
 
   const BOATS = [
-    { name: "Hermes",         types: ["Fiskebåt"] },
-    { name: "Besten",         types: ["Slepebåt", "Fraktebåt"] },
-    { name: "Tampen",         types: ["Fiskebåt"] },
-    { name: "Holger Stjern",  types: ["Ferge"] },
+    { name: "Nidaros",        types: ["Seilbåt"] },
+    { name: "Elfryd",         types: ["Snekke"] },
+    { name: "Futen",          types: ["Robåt"] },
+    { name: "Båra",           types: ["Fiskebåt"] },
+    { name: "Oscar",          types: ["Snekke"] },
     { name: "Stokksundferja", types: ["Ferge"] },
-    { name: "Sørhavn",        types: ["Slepebåt"] },
-    { name: "Kaptein Dyre",   types: ["Slepebåt"] },
+    { name: "Det gode liv",   types: ["Seilbåt"] },
+    { name: "Kria",           types: ["Seilbåt"]},
+    { name: "Tampen",         types: ["Fiskebåt"] },
+    { name: "Besten",         types: ["Arbeidsbåt"] },
+    { name: "Hermes",         types: ["Fiskebåt"] },
+    { name: "Værdalen",       types: ["Arbeidsbåt"] },
+    { name: "Holger Stjern",  types: ["Ferge"] },
+    { name: "Kaptein Dyre",   types: ["Arbeidsbåt"] },
     { name: "Veslefrikk",     types: ["Fiskebåt"] },
     { name: "Skoghaug",       types: ["Fiskebåt"] },
+    { name: "Harry Borthen",  types: ["Arbeidsbåt"]},
     { name: "Sandåsbuen",     types: ["Fiskebåt"] },
-    { name: "Liv",            types: ["Fiskebåt"] },
-    { name: "Værdalen",       types: ["Fraktebåt"] },
-    { name: "Det gode liv",   types: ["Seilbåt", "Fraktebåt"] },
-    { name: "Trygge",         types: ["Fiskebåt", "Fraktebåt"] },
-    { name: "Havbåra",        types: ["Fiskebåt"] },
-    { name: "Futen",          types: ["Robåt"] },
-    { name: "Auskaret",       types: ["Seilbåt", "Robåt"] },
-    { name: "Nidaros",        types: ["Seilbåt", "Robåt", "Fraktebåt"] },
+    { name: "Orient",         types: ["Fiskebåt"]},
   ];
 
-  const MAX_SCORE = BOATS.reduce((s, b) => s + b.types.length, 0); // 22
+  const MAX_SCORE = BOATS.reduce((s, b) => s + b.types.length, 0); // 19
 
   let currentBoatIndex = 0;
   let score = 0;
@@ -528,11 +534,12 @@ tailwind.config = {
 
   function toggleType(key) {
     if (submitted) return;
-    selected.has(key) ? selected.delete(key) : selected.add(key);
+    selected.clear();
+    selected.add(key);
     document.querySelectorAll('.answer-btn').forEach(btn => {
       btn.classList.toggle('selected', selected.has(btn.dataset.key));
     });
-    document.getElementById('submit-btn').disabled = selected.size === 0;
+    document.getElementById('submit-btn').disabled = false;
   }
 
   function submitAnswer() {
@@ -609,10 +616,11 @@ tailwind.config = {
       playBtn.onclick = resumeQuiz;
     } else {
       document.getElementById('play-again-icon').textContent = 'refresh';
-      document.getElementById('play-again-label').textContent = 'Spill igjen';
+      document.getElementById('play-again-label').textContent = 'Prøv på nytt!';
       playBtn.onclick = startQuiz;
     }
-    document.getElementById('submit-name-area').classList.remove('hidden');
+    const allAnswered = !fromNav || currentBoatIndex >= BOATS.length;
+    document.getElementById('submit-name-area').classList.toggle('hidden', !allAnswered);
     document.getElementById('name-input-area').classList.add('hidden');
     document.getElementById('name-submitted-area').classList.add('hidden');
     document.getElementById('player-name-input').value = '';
@@ -633,42 +641,31 @@ tailwind.config = {
     const name = document.getElementById('player-name-input').value.trim();
     if (!name) return;
 
-    const btn = document.getElementById('name-input-area').querySelector('button');
+    const btn   = document.querySelector('#name-input-area button');
+    const input = document.getElementById('player-name-input');
     btn.disabled = true;
-    btn.innerHTML = '<span class="material-symbols-outlined text-base">hourglass_top</span> Sender…';
 
     try {
-      const apiUrl = `https://api.github.com/repos/${SCOREBOARD_OWNER}/${SCOREBOARD_REPO}/contents/scores.json`;
-      const headers = {
-        Authorization: `token ${SCOREBOARD_TOKEN}`,
-        Accept: 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json',
-      };
-
-      const getRes = await fetch(apiUrl, { headers });
-      if (!getRes.ok) throw new Error('read');
-      const fileData = await getRes.json();
-
-      const existing = JSON.parse(decodeURIComponent(escape(atob(fileData.content.replace(/\s/g, '')))));
-      existing.unshift({ name, score, dt: new Date().toISOString() });
-
-      const putRes = await fetch(apiUrl, {
-        method: 'PUT',
-        headers,
-        body: JSON.stringify({
-          message: `score: ${name} ${score}/24`,
-          content: btoa(unescape(encodeURIComponent(JSON.stringify(existing)))),
-          sha: fileData.sha,
-        }),
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/scores`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ name, score, dt: new Date().toISOString() })
       });
-      if (!putRes.ok) throw new Error('write');
 
-      document.getElementById('submitted-name').textContent = name;
+      if (!res.ok) throw new Error();
+
       document.getElementById('name-input-area').classList.add('hidden');
       document.getElementById('name-submitted-area').classList.remove('hidden');
+      document.getElementById('submitted-name').textContent = name;
     } catch {
       btn.disabled = false;
-      btn.innerHTML = '<span class="material-symbols-outlined text-base" style="font-variation-settings:\'FILL\' 1;">warning</span> Prøv igjen';
+      input.style.borderColor = '#ba1a1a';
+      setTimeout(() => { input.style.borderColor = ''; }, 2000);
     }
   }
 
